@@ -1,0 +1,138 @@
+basePath: /api
+definitions:
+  app.CreateAppDto:
+    properties:
+      sample:
+        type: string
+    type: object
+  app.UpdateAppDto:
+    properties:
+      sample:
+        type: string
+    type: object
+  helpers.ResMessage:
+    properties:
+      code:
+        type: integer
+      error: {}
+      message:
+        type: string
+      result: {}
+    type: object
+host: 127.0.0.1:7000
+info:
+  contact: {}
+  description: Niom-Sample Backend REST API
+  title: Niom-Sample
+  version: "1.0"
+paths:
+  /v1/app:
+    get:
+      consumes:
+      - application/json
+      description: get all app
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResMessage'
+      security:
+      - ApiKeyApp: []
+      summary: Get all app
+      tags:
+      - App
+    patch:
+      consumes:
+      - application/json
+      description: update app
+      parameters:
+      - description: App ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Create App Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/app.UpdateAppDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResMessage'
+      security:
+      - ApiKeyApp: []
+      summary: Update App by Id
+      tags:
+      - App
+    post:
+      consumes:
+      - application/json
+      description: create app
+      parameters:
+      - description: Update App Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/app.CreateAppDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResMessage'
+      security:
+      - ApiKeyApp: []
+      summary: create a app
+      tags:
+      - App
+  /v1/app/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete app
+      parameters:
+      - description: App ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyApp: []
+      summary: delete a app
+      tags:
+      - App
+    get:
+      consumes:
+      - application/json
+      description: get app
+      parameters:
+      - description: App ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResMessage'
+      security:
+      - ApiKeyApp: []
+      summary: get a app
+      tags:
+      - App
+swagger: "2.0"
